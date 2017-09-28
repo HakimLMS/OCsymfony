@@ -1,0 +1,27 @@
+{% extends "OCCoreBundle::layout.html.twig"%}
+
+
+{% block body %}
+    <h2 style="text-align: center;"> Accueil </h2>
+    <div class="container">
+        
+        {% for advert in lastsAdverts %}
+            <div class="card">
+                <div class="card-block">
+
+                      <a href="{{ path('oc_platform_view', {'id': advert.id}) }}">
+                          {{ advert.title|upper }}
+                      </a>
+                      <p class="text-advert">
+                      {{advert.content}}
+                      </p>
+                      <span class="advert-signature">par {{ advert.author }},
+                          le {{ advert.date|date('d/m/Y') }}</span>                
+                </div>
+            </div>    
+        {% else %}
+            <div class="no_adverts">Pas (encore !) d'annonces</div>
+        {% endfor %}
+       
+    </div>
+{% endblock %}
