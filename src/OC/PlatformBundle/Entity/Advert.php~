@@ -91,10 +91,16 @@ class Advert
     private $nbApplications = 0;
     
     /**
-    * @Gedmo\Slug(fields={"title"})
-    * @ORM\Column(name="slug", type="string", length=255, unique=true)
+    * @Gedmo\Slug(fields={"title"})//attributs a partir duquel le slug est généré
+    * @ORM\Column(name="slug", type="string", length=255)
     */
     private $slug;
+    
+    
+    /**
+     * @ORM\column(name="page", type="integer")
+     */
+    private $page;
 
 
      public function __construct()
@@ -102,6 +108,7 @@ class Advert
     // Par défaut, la date de l'annonce est la date d'aujourd'hui
     $this->date = new \Datetime();
     $this->applications = new ArrayCollection();
+    $this->categories   = new ArrayCollection();
   }
     
     
@@ -354,7 +361,7 @@ class Advert
      *
      * @return Advert
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(\Datetime $updatedAt =null)
     {
         $this->updatedAt = $updatedAt;
 
@@ -417,5 +424,29 @@ class Advert
     public function getMail()
     {
         return $this->mail;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Advert
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

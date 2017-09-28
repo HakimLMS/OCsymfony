@@ -95,13 +95,16 @@ class Advert
     * @ORM\Column(name="slug", type="string", length=255)
     */
     private $slug;
-
+    
+    
+ 
 
      public function __construct()
   {
     // Par défaut, la date de l'annonce est la date d'aujourd'hui
     $this->date = new \Datetime();
     $this->applications = new ArrayCollection();
+    $this->categories   = new ArrayCollection();
   }
     
     
@@ -354,7 +357,7 @@ class Advert
      *
      * @return Advert
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(\Datetime $updatedAt =null)
     {
         $this->updatedAt = $updatedAt;
 
@@ -443,3 +446,4 @@ class Advert
         return $this->slug;
     }
 }
+ 
