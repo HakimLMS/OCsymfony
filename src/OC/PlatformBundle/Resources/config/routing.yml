@@ -1,28 +1,19 @@
 # src/OC/PlatformBundle/Resources/config/routing.yml
-# prefixe platform/ set in app/config/routing.yml
 
-
-
-
-#route home avec des pages pour consulter les dernières annonces et l'historique si @page non rempli défaut 1
 oc_platform_home:
     path:      /{page}
     defaults:
         _controller: OCPlatformBundle:Advert:index
-        page: 1 
+        page:        1
     requirements:
         page: \d*
-
     
-#voir annonce @id=X
 oc_platform_view:
     path:      /advert/{id}
     defaults:
         _controller: OCPlatformBundle:Advert:view
     requirements:
         id: \d+
-    
-#crud basique
 
 oc_platform_add:
     path:      /add
